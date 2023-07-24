@@ -1,0 +1,37 @@
+header {
+  
+    width: 100%;
+    height: 150vh;
+
+    background-image:
+    linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 1)),
+    url('../../images/background.jpg');
+    background-size: cover;
+    color: white;
+  }
+
+.main-img {
+    position: absolute;
+    width: 100%;
+    height: 150vh;
+    z-index: -1;
+    margin: 0;
+    display: borde
+}
+.title {
+    color: #ffff;
+    font-size: 200px;
+    letter-spacing: 40px;
+    margin-top:  0;
+    margin-bottom: 0;
+    margin-left: 200px;
+
+    
+}
+.subtitle {
+    color: #ffff;
+    font-size: 90px;
+    width: 20%;
+    text-align: center;
+    margin: auto;
+}

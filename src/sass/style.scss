@@ -1,9 +1,6 @@
-h1 {
-  color: aqua;
-}
-body {
-    background-image: url("/src/images/background.jpg");
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-}
+@import 'partials/typography';
+@import 'partials/globals';
+@import 'partials/homepage';
+@import 'partials/header';
+@import 'partials/variables';
+@import 'partials/normalise';
