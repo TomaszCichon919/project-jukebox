@@ -1,5 +1,5 @@
 import utils from '../utils.js';
-import { templates, select, classNames } from '../settings.js';
+import { templates, select,} from '../settings.js';
 class Discover {
 constructor (randomSong){
 const thisDiscover= this;

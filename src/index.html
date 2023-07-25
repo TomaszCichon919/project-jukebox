@@ -37,6 +37,15 @@
       <section id="search">
         <div class="search-wrapper container">
           <h1>Hello search</h1>
+          <form>
+            <div class="mb-3">
+              <label for="search" class="form-label">Search</label>
+              <input type="text" class="form-control" id="search" aria-describedby="search" name="search">
+            </div>
+            <div class="mb-3">
+             
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
         </div>
       </section>
       <section id="discover">
@@ -47,7 +56,6 @@
     </div>
       <script id="template-player" type="text/x-handlebars-template">
         <article class="song">
-        <h1>Hello home page</h1>
         <h3 class="song-title">{{ author }} - {{ title }}</h3>
         <div class="player">
           <audio>

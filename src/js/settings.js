@@ -15,7 +15,9 @@ export const select = {
     search: '.search-wrapper',
     discover: '.discover-wrapper',
   },
-
+ search: {
+  input: '[name="search"]',
+}
 };
 
 export const classNames = {
@@ -23,15 +25,7 @@ export const classNames = {
     wrapperActive: 'active',
     imageVisible: 'active',
   },
-      
-  cart: {
-    wrapperActive: 'active',
-  },
-  booking: {
-    loading: 'loading',
-    tableBooked: 'booked',
-    tableSelect: 'selected'
-  },
+ 
   nav: {
     active: 'active',
   },

@@ -1,6 +1,7 @@
 import { settings, select, classNames } from './settings.js';
 import Song from './components/Song.js';
 import Discover from  './components/Discover.js';
+import Search from  './components/Search.js';
 let shuffleBin = [];
 const app = {
   initPages: function () {
@@ -114,11 +115,11 @@ const app = {
     //console.log("thisApp.data", JSON.stringify(thisApp.data));
   },
 
-  // initDiscover: function () {
-  //   const thisApp = this;
-  //   const discoverElem = document.querySelector(select.containerOf.discover);
-  //   thisApp.discover = new Discover(discoverElem, thisApp.randomIndex);
-  // },
+  initSearch: function () {
+    const thisApp = this;
+    const searchElem = document.querySelector(select.containerOf.search);
+    thisApp.search = new Search(searchElem);
+  },
 
 
 
@@ -131,7 +132,7 @@ const app = {
     // console.log('templates:', templates);
     thisApp.initData();
     thisApp.initPages();
-    //thisApp.initDiscover();
+    thisApp.initSearch();
     setTimeout(function(){thisApp.initWidget();}, 900);
 
   
