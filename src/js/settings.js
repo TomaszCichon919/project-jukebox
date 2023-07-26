@@ -17,13 +17,16 @@ export const select = {
   },
  search: {
   input: '[name="search"]',
-}
+  pagetop: '.pagetop',
+  audio: '.audio-player',
+
+  }
 };
 
 export const classNames = {
-  menuProduct: {
-    wrapperActive: 'active',
-    imageVisible: 'active',
+  search: {
+    standardPlayer: 'player',
+    searchPlayer: 'player2',
   },
  
   nav: {

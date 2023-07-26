@@ -35,7 +35,7 @@
         </div>
       </section>
       <section id="search">
-        <div class="search-wrapper container">
+        <div class="pagetop">
           <h1>Hello search</h1>
           <form>
             <div class="mb-3">
@@ -47,6 +47,8 @@
             <button type="submit" class="btn btn-primary">Search</button>
           </form>
         </div>
+          <div class="search-wrapper container">
+        </div>
       </section>
       <section id="discover">
         <div class="discover-wrapper container">
@@ -57,7 +59,7 @@
       <script id="template-player" type="text/x-handlebars-template">
         <article class="song">
         <h3 class="song-title">{{ author }} - {{ title }}</h3>
-        <div class="player">
+        <div class="player audio-player">
           <audio>
               <source src="songs/{{ filename }}" type="audio/mpeg">
           </audio>

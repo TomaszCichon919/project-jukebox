@@ -1,19 +1,18 @@
-import {settings, templates, select} from '../settings.js';
+import {settings, templates, select, classNames} from '../settings.js';
 import utils from '../utils.js';
 class Search {
-    constructor (element){
-        const thisSearch = this;
-        thisSearch.data = {};
-        thisSearch.box = [];
-       thisSearch.getData ();
-        thisSearch.getElements(element);
-        thisSearch.initActions ();
-      //  thisSearch.InitWidget ();
-      //setTimeout(function(){console.log ('hello22', thisSearch.data);}, 1000);
-    }
+  constructor (element){
+    const thisSearch = this;
+    thisSearch.data = {};
+    thisSearch.box = [];
+    thisSearch.getData ();
+    thisSearch.getElements(element);
+    thisSearch.initActions ();
+    //setTimeout(function(){console.log ('hello22', thisSearch.data);}, 1000);
+  }
 
-    getData (){
-        const thisSearch = this;
+  getData (){
+    const thisSearch = this;
 
     const url = settings.db.url + '/' + settings.db.songs;
     fetch(url)
@@ -40,21 +39,26 @@ class Search {
     thisSearch.dom = {};
     thisSearch.dom.wrapper = element;
     thisSearch.dom.input = document.querySelector(select.search.input);
+    thisSearch.dom.pageTop = document.querySelector(select.search.pagetop);
+   
+    
+    
+    
   }
 
   initActions () {
     const thisSearch = this;
-    thisSearch.dom.wrapper.addEventListener('submit', function (event) {
-        event.preventDefault();
-        console.log ('there was a click');
-        console.log('searched text', thisSearch.dom.input.value);
-        thisSearch.searchFilter(thisSearch.box, thisSearch.dom.input.value);
+    thisSearch.dom.pageTop.addEventListener('submit', function (event) {
+      event.preventDefault();
+      console.log ('there was a click');
+      console.log('searched text', thisSearch.dom.input.value);
+      thisSearch.searchFilter(thisSearch.box, thisSearch.dom.input.value);
 
-  })
-}
+    });
+  }
 
-searchFilter (array, searchString) {
-const thisSearch = this;
+  searchFilter (array, searchString) {
+    const thisSearch = this;
     const searchTerm = searchString.toLowerCase();
     thisSearch.result =  array.filter(item => item.toLowerCase().includes(searchTerm));
     console.log("result", thisSearch.result);
@@ -65,46 +69,54 @@ const thisSearch = this;
     const thisSearch = this;
     console.log('data', thisSearch.data);
     console.log("given result", thisSearch.result);
+    thisSearch.dom.wrapper.innerHTML = '';
     for (let songData in thisSearch.data.songs){
-       
-        if(thisSearch.data.songs[songData].title === thisSearch.result[0] || thisSearch.data.songs[songData].author === thisSearch.result[0]) {
-            console.log('selected song', thisSearch.data.songs[songData]);
-            const generatedHTML = templates.player(thisSearch.data.songs[songData]);
-            // //console.log(generatedHTML);
-            // /* create element using utils.createElementFromHTML */
-             thisSearch.element = utils.createDOMFromHTML(generatedHTML);
-            // //console.log("thissong element", thisSong.element);
-            // /* find menu container */
-             const playerContainer = document.querySelector(select.containerOf.search);
-            // /* add element to menu */
-             playerContainer.appendChild(thisSearch.element);
-            break;
-        } else {
-            console.log("no result found");
-        }
+      if(thisSearch.data.songs[songData].title === thisSearch.result[0] || thisSearch.data.songs[songData].author === thisSearch.result[0]) {
+        console.log('selected song', thisSearch.data.songs[songData]);
+
+
+        const generatedHTML = templates.player(thisSearch.data.songs[songData]);
+        // //console.log(generatedHTML);
+        // /* create element using utils.createElementFromHTML */
+        thisSearch.element = utils.createDOMFromHTML(generatedHTML);
+        // //console.log("thissong element", thisSong.element);
+        // /* find menu container */
+        const playerContainer = document.querySelector(select.containerOf.search);
+        // /* add element to menu */
+        playerContainer.appendChild(thisSearch.element);
+        break;
+      } else {
+        console.log("no result found");
+      }
     }
+    console.log('elelent', thisSearch.dom.GreenAudioPlayer);
+    thisSearch.dom.GreenAudioPlayer = thisSearch.dom.wrapper.querySelector(select.search.audio);
+    thisSearch.dom.GreenAudioPlayer.classList.remove(classNames.search.standardPlayer);
+    thisSearch.dom.GreenAudioPlayer.classList.add(classNames.search.searchPlayer);
     thisSearch.initWidget ();
+    //thisSearch.result = [];
+    console.log('end result', thisSearch.result);
   }
 
   initWidget () {
     GreenAudioPlayer.init({
-      selector: '.player',
+      selector: '.player2',
       stopOthersOnPlay: true
-  });
-}
+    });
+  }
 
 
-initAllSongData () {
-        const thisSearch = this;
-        //console.log('thisApp.data:', thisApp.data);
+  initAllSongData () {
+    const thisSearch = this;
+    //console.log('thisApp.data:', thisApp.data);
     
-        for (let songData in thisSearch.data.songs) {
-            thisSearch.box.push(thisSearch.data.songs[songData].title);
-            thisSearch.box.push(thisSearch.data.songs[songData].author);  
-          console.log('box', thisSearch.box);
-        }
-      }
+    for (let songData in thisSearch.data.songs) {
+      thisSearch.box.push(thisSearch.data.songs[songData].title);
+      thisSearch.box.push(thisSearch.data.songs[songData].author);  
+      console.log('box', thisSearch.box);
     }
+  }
+}
 
    
    

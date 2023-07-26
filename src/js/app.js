@@ -1,7 +1,7 @@
 import { settings, select, classNames } from './settings.js';
 import Song from './components/Song.js';
-import Discover from  './components/Discover.js';
-import Search from  './components/Search.js';
+import Discover from './components/Discover.js';
+import Search from './components/Search.js';
 let shuffleBin = [];
 const app = {
   initPages: function () {
@@ -63,31 +63,32 @@ const app = {
     }
 
   },
-  initShuffler () {
-    console.log('hello333'); 
-    const thisApp =this;
+  initShuffler() {
+    console.log('hello333');
+    const thisApp = this;
     for (const songData in thisApp.data.songs) {
-      shuffleBin.push(thisApp.data.songs[songData].id); 
-      
-  }
-  console.log('shufflebin', shuffleBin);
-  const randomIndex = (Math.floor(Math.random()* (shuffleBin.length+1)));
-  console.log("randomindex", randomIndex);
+      shuffleBin.push(thisApp.data.songs[songData].id);
 
-  for (const songData in thisApp.data.songs){
-    if(thisApp.data.songs[songData].id == randomIndex){
-      console.log('random song', thisApp.data.songs[songData]);
-      thisApp.discover = new Discover(thisApp.data.songs[songData]);
+    }
+    //console.log('shufflebin', shuffleBin);
+    //console.log('shufflebin length', shuffleBin.length);
+    const randomIndex = (Math.floor(Math.random() * (shuffleBin.length)+1));
+    //console.log("randomindex", randomIndex);
+
+    for (const songData in thisApp.data.songs) {
+      if (thisApp.data.songs[songData].id == randomIndex) {
+        console.log('random song', thisApp.data.songs[songData]);
+        thisApp.discover = new Discover(thisApp.data.songs[songData]);
+      };
     };
-  }; 
-  
-},
 
-  initWidget () {
+  },
+
+  initWidget() {
     GreenAudioPlayer.init({
       selector: '.player',
       stopOthersOnPlay: true
-  });
+    });
 
   },
 
@@ -109,7 +110,7 @@ const app = {
         // /* execute initMenu method */
         thisApp.initPlayer();
         thisApp.initShuffler();
-        console.log ('hello', thisApp.data);
+        console.log('hello', thisApp.data);
 
       });
     //console.log("thisApp.data", JSON.stringify(thisApp.data));
@@ -133,9 +134,9 @@ const app = {
     thisApp.initData();
     thisApp.initPages();
     thisApp.initSearch();
-    setTimeout(function(){thisApp.initWidget();}, 900);
+    setTimeout(function () { thisApp.initWidget(); }, 900);
 
-  
+
   },
 
 };
