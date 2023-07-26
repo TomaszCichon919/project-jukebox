@@ -61,44 +61,70 @@ class Search {
     const thisSearch = this;
     const searchTerm = searchString.toLowerCase();
     thisSearch.result =  array.filter(item => item.toLowerCase().includes(searchTerm));
-    console.log("result", thisSearch.result);
+    //console.log("result", thisSearch.result);
     thisSearch.generatePlayer();
   }
 
   generatePlayer() {
     const thisSearch = this;
-    console.log('data', thisSearch.data);
-    console.log("given result", thisSearch.result);
     thisSearch.dom.wrapper.innerHTML = '';
-    for (let songData in thisSearch.data.songs){
-      if(thisSearch.data.songs[songData].title === thisSearch.result[0] || thisSearch.data.songs[songData].author === thisSearch.result[0]) {
-        console.log('selected song', thisSearch.data.songs[songData]);
+    if (thisSearch.result.length == 1){
+      for (let songData in thisSearch.data.songs){
+        if(thisSearch.data.songs[songData].title === thisSearch.result[0] || thisSearch.data.songs[songData].author === thisSearch.result[0]) {
+          //console.log('selected song', thisSearch.data.songs[songData]);
 
 
-        const generatedHTML = templates.player(thisSearch.data.songs[songData]);
-        // //console.log(generatedHTML);
-        // /* create element using utils.createElementFromHTML */
-        thisSearch.element = utils.createDOMFromHTML(generatedHTML);
-        // //console.log("thissong element", thisSong.element);
-        // /* find menu container */
-        const playerContainer = document.querySelector(select.containerOf.search);
-        // /* add element to menu */
-        playerContainer.appendChild(thisSearch.element);
-        break;
-      } else {
-        console.log("no result found");
+          const generatedHTML = templates.player(thisSearch.data.songs[songData]);
+        
+          thisSearch.element = utils.createDOMFromHTML(generatedHTML);
+       
+          const playerContainer = document.querySelector(select.containerOf.search);
+       
+          playerContainer.appendChild(thisSearch.element);
+        } 
       }
+      console.log('elelent', thisSearch.dom.GreenAudioPlayer);
+      thisSearch.dom.GreenAudioPlayer = thisSearch.dom.wrapper.querySelector(select.search.audio);
+      thisSearch.dom.GreenAudioPlayer.classList.remove(classNames.search.standardPlayer);
+      thisSearch.dom.GreenAudioPlayer.classList.add(classNames.search.searchPlayer);
+
+      thisSearch.initWidget ();
+
+      console.log('end result', thisSearch.result);
+    } else if (thisSearch.result.length > 1){
+      for( let i = 0; i < thisSearch.result.length; i++ ){
+        for (let songData in thisSearch.data.songs){
+          if(thisSearch.data.songs[songData].title === thisSearch.result[i] || thisSearch.data.songs[songData].author === thisSearch.result[i]) {
+            //console.log('selected song', thisSearch.data.songs[songData]);
+  
+  
+            const generatedHTML = templates.player(thisSearch.data.songs[songData]);
+         
+            thisSearch.element = utils.createDOMFromHTML(generatedHTML);
+          
+            const playerContainer = document.querySelector(select.containerOf.search);
+ 
+            playerContainer.appendChild(thisSearch.element);
+          } 
+        }
+     
+      }
+      thisSearch.dom.GreenAudioPlayers = thisSearch.dom.wrapper.querySelectorAll(select.search.audio);
+      console.log('elelent', thisSearch.dom.GreenAudioPlayers);
+      for (let song of thisSearch.dom.GreenAudioPlayers){
+        song.classList.remove(classNames.search.standardPlayer);
+        song.classList.add(classNames.search.searchPlayer);
+      }
+      thisSearch.initWidget ();
+    } else {
+      //alert('no result foud');
+      thisSearch.dom.wrapper.innerHTML = '<h3>No results found</h3>';
     }
-    console.log('elelent', thisSearch.dom.GreenAudioPlayer);
-    thisSearch.dom.GreenAudioPlayer = thisSearch.dom.wrapper.querySelector(select.search.audio);
-    thisSearch.dom.GreenAudioPlayer.classList.remove(classNames.search.standardPlayer);
-    thisSearch.dom.GreenAudioPlayer.classList.add(classNames.search.searchPlayer);
-    thisSearch.initWidget ();
-    //thisSearch.result = [];
-    console.log('end result', thisSearch.result);
-  }
+} 
+
 
   initWidget () {
+    // eslint-disable-next-line no-undef
     GreenAudioPlayer.init({
       selector: '.player2',
       stopOthersOnPlay: true
@@ -109,10 +135,13 @@ class Search {
   initAllSongData () {
     const thisSearch = this;
     //console.log('thisApp.data:', thisApp.data);
-    
     for (let songData in thisSearch.data.songs) {
-      thisSearch.box.push(thisSearch.data.songs[songData].title);
-      thisSearch.box.push(thisSearch.data.songs[songData].author);  
+      if (!thisSearch.box.includes(thisSearch.data.songs[songData].title)){
+        thisSearch.box.push(thisSearch.data.songs[songData].title);
+      }
+      if (!thisSearch.box.includes(thisSearch.data.songs[songData].author)){
+        thisSearch.box.push(thisSearch.data.songs[songData].author);  
+      }
       console.log('box', thisSearch.box);
     }
   }
@@ -121,40 +150,5 @@ class Search {
    
    
     
-     export default Search;
-    // {
-    //     "posts": [
-    //       { "id": 1, "title": "json-server", "author": "typicode" }
-    //     ],
-    //     "comments": [
-    //       { "id": 1, "body": "some comment", "postId": 1 }
-    //     ],
-    //     "profile": { "name": "typicode" }
-    //   }
-
-    // http://localhost:3131/songs?title_g
-
-// function filterElementsBySetOfLetters(array, setOfLetters) {
-//     // Przygotowujemy tablicę na elementy spełniające warunek
-//     const filteredElements = [];
-  
-//     // Iterujemy przez tablicę
-//     for (const element of array) {
-//       // Sprawdzamy, czy element zawiera wszystkie litery ze zbioru
-//       const elementContainsSet = setOfLetters.every(letter => element.includes(letter));
-      
-//       // Jeśli tak, dodajemy element do tablicy wynikowej
-//       if (elementContainsSet) {
-//         filteredElements.push(element);
-//       }
-//     }
-  
-//     return filteredElements;
-//   }
-  
-//   // Przykład użycia funkcji
-//   const myArray = ['apple', 'banana', 'orange', 'kiwi', 'grape'];
-//   const setOfLettersToFind = ['a', 'p', 'l', 'e'];
-  
-//   const result = filterElementsBySetOfLetters(myArray, setOfLettersToFind);
-//   console.log(result); // Wyświetli ['apple']
+export default Search;
+    
