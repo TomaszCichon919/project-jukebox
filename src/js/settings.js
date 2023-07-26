@@ -3,6 +3,7 @@ export const select = {
 
   templateOf: {
     player: "#template-player",
+    resultCounter: "#template-result",
   },
   
   nav: {
@@ -14,6 +15,7 @@ export const select = {
     home: '.home-wrapper',
     search: '.search-wrapper',
     discover: '.discover-wrapper',
+    result: '.result',
   },
  search: {
   input: '[name="search"]',
@@ -48,4 +50,5 @@ export const settings = {
 };
   export const templates = {
     player: Handlebars.compile(document.querySelector(select.templateOf.player).innerHTML),
+    resultCounter: Handlebars.compile(document.querySelector(select.templateOf.resultCounter).innerHTML),
 };

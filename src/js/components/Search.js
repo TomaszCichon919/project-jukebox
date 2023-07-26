@@ -5,6 +5,7 @@ class Search {
     const thisSearch = this;
     thisSearch.data = {};
     thisSearch.box = [];
+    thisSearch.resultCounter = [];
     thisSearch.getData ();
     thisSearch.getElements(element);
     thisSearch.initActions ();
@@ -40,6 +41,7 @@ class Search {
     thisSearch.dom.wrapper = element;
     thisSearch.dom.input = document.querySelector(select.search.input);
     thisSearch.dom.pageTop = document.querySelector(select.search.pagetop);
+    thisSearch.dom.resultWrapper =document.querySelector(select.containerOf.result); 
    
     
     
@@ -68,12 +70,14 @@ class Search {
   generatePlayer() {
     const thisSearch = this;
     thisSearch.dom.wrapper.innerHTML = '';
+    thisSearch.dom.resultWrapper.innerHTML = '';
+    thisSearch.resultCounter = [];
+    thisSearch.resultCount = {counter: 1, song: 'song'};
     if (thisSearch.result.length == 1){
       for (let songData in thisSearch.data.songs){
         if(thisSearch.data.songs[songData].title === thisSearch.result[0] || thisSearch.data.songs[songData].author === thisSearch.result[0]) {
           //console.log('selected song', thisSearch.data.songs[songData]);
-
-
+          thisSearch.resultCounter.push(thisSearch.data.songs[songData]);
           const generatedHTML = templates.player(thisSearch.data.songs[songData]);
         
           thisSearch.element = utils.createDOMFromHTML(generatedHTML);
@@ -83,11 +87,10 @@ class Search {
           playerContainer.appendChild(thisSearch.element);
         } 
       }
-      console.log('elelent', thisSearch.dom.GreenAudioPlayer);
+      //console.log('elelent', thisSearch.dom.GreenAudioPlayer);
       thisSearch.dom.GreenAudioPlayer = thisSearch.dom.wrapper.querySelector(select.search.audio);
       thisSearch.dom.GreenAudioPlayer.classList.remove(classNames.search.standardPlayer);
       thisSearch.dom.GreenAudioPlayer.classList.add(classNames.search.searchPlayer);
-
       thisSearch.initWidget ();
 
       console.log('end result', thisSearch.result);
@@ -96,6 +99,7 @@ class Search {
         for (let songData in thisSearch.data.songs){
           if(thisSearch.data.songs[songData].title === thisSearch.result[i] || thisSearch.data.songs[songData].author === thisSearch.result[i]) {
             //console.log('selected song', thisSearch.data.songs[songData]);
+            thisSearch.resultCounter.push(thisSearch.data.songs[songData]);
   
   
             const generatedHTML = templates.player(thisSearch.data.songs[songData]);
@@ -110,16 +114,29 @@ class Search {
      
       }
       thisSearch.dom.GreenAudioPlayers = thisSearch.dom.wrapper.querySelectorAll(select.search.audio);
-      console.log('elelent', thisSearch.dom.GreenAudioPlayers);
+      //console.log('elelent', thisSearch.dom.GreenAudioPlayers);
       for (let song of thisSearch.dom.GreenAudioPlayers){
         song.classList.remove(classNames.search.standardPlayer);
         song.classList.add(classNames.search.searchPlayer);
       }
+      console.log('result counter', thisSearch.resultCounter.length);
+      
+      thisSearch.resultCount = {counter: thisSearch.resultCounter.length, song: 'songs'};
       thisSearch.initWidget ();
     } else {
       //alert('no result foud');
-      thisSearch.dom.wrapper.innerHTML = '<h3>No results found</h3>';
+      thisSearch.resultCount = {counter: 'no matching', song: 'songs, we are sorry...'};
     }
+
+
+      
+      const generatedHTML = templates.resultCounter(thisSearch.resultCount);
+    
+      thisSearch.element = utils.createDOMFromHTML(generatedHTML);
+   
+      const resultContainer = document.querySelector(select.containerOf.result);
+   
+      resultContainer.appendChild(thisSearch.element);
 } 
 
 
