@@ -72,7 +72,7 @@ class Search {
     thisSearch.dom.wrapper.innerHTML = '';
     thisSearch.dom.resultWrapper.innerHTML = '';
     thisSearch.resultCounter = [];
-    thisSearch.resultCount = {counter: 1, song: 'song'};
+    thisSearch.resultCount = {counter: 1, song: 'song...'};
     if (thisSearch.result.length == 1){
       for (let songData in thisSearch.data.songs){
         if(thisSearch.data.songs[songData].title === thisSearch.result[0] || thisSearch.data.songs[songData].author === thisSearch.result[0]) {
@@ -121,7 +121,7 @@ class Search {
       }
       console.log('result counter', thisSearch.resultCounter.length);
       
-      thisSearch.resultCount = {counter: thisSearch.resultCounter.length, song: 'songs'};
+      thisSearch.resultCount = {counter: thisSearch.resultCounter.length, song: 'songs...'};
       thisSearch.initWidget ();
     } else {
       //alert('no result foud');

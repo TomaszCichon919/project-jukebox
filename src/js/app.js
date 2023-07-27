@@ -4,6 +4,35 @@ import Discover from './components/Discover.js';
 import Search from './components/Search.js';
 let shuffleBin = [];
 const app = {
+
+  
+  convertTextToUppercase: function(element){
+    const thisApp=this;
+    if (element.nodeType === Node.TEXT_NODE) {
+      
+      element.textContent = element.textContent.toUpperCase();
+    } else if (element.nodeType === Node.ELEMENT_NODE) {
+     
+      const childNodes = element.childNodes;
+      for (let i = 0; i < childNodes.length; i++) {
+        thisApp.convertTextToUppercase(childNodes[i]);
+      }
+    }
+  },
+
+  toUpperCase: function() {
+
+    const thisApp = this;
+   
+    thisApp.capslock = document.querySelectorAll('.header, .main-nav');
+    console.log('capslock', thisApp.capslock);
+  
+    thisApp.capslock.forEach((div) => {
+      thisApp.convertTextToUppercase(div);
+    });
+  
+  },
+  
   initPages: function () {
     const thisApp = this;
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
@@ -132,6 +161,7 @@ const app = {
     // console.log('settings:', settings);
     // console.log('templates:', templates);
     thisApp.initData();
+    thisApp.toUpperCase();
     thisApp.initPages();
     thisApp.initSearch();
     setTimeout(function () { thisApp.initWidget(); }, 900);
