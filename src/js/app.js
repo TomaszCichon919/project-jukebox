@@ -24,7 +24,7 @@ const app = {
 
     const thisApp = this;
    
-    thisApp.capslock = document.querySelectorAll('.header, .main-nav');
+    thisApp.capslock = document.querySelectorAll('.header, .main-nav, .subscribe-text, .new-album, .join');
     console.log('capslock', thisApp.capslock);
   
     thisApp.capslock.forEach((div) => {
@@ -76,9 +76,9 @@ const app = {
       page.classList.toggle(classNames.pages.active, page.id == pageId);
     }
     /* add class active to maching links, remove from non-matching */
-    // for (let link of thisApp.navLinks) {
-    //   link.classList.remove(classNames.nav.active, link.getAttribute('href') == '#' + pageId);
-    // }
+     for (let link of thisApp.navLinks) {
+       link.classList.toggle(classNames.nav.bold, link.getAttribute('href') == '#' + pageId);
+     }
 
   },
 

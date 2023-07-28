@@ -33,6 +33,7 @@ export const classNames = {
  
   nav: {
     active: 'active',
+    bold: 'bold',
   },
   pages: {
     active: 'active',

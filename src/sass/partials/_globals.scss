@@ -53,3 +53,22 @@ background-color: $color-detail;
   .active {
     display: block;
   }
+  .bold {
+    font-weight: 700;
+  }
+
+.btn-primary {
+    background-color: $color-detail;
+    border-color: $color-detail;
+}
+.btn-primary:hover{
+    background-color: $color-detail;
+    border-color: $color-detail;
+    transition: none;
+}
+.btn-primary:focus {
+    background-color:$color-detail !important;
+    border: 0 !important;
+    box-shadow: none !important;
+ }
+
