@@ -5,9 +5,13 @@
     box-sizing: border-box;
   }
 .container {
-    max-width: 900px;
-    margin: 0, auto;
+    width: 70%;
     padding: 0 20px;
+    margin: auto;
+    text-align: center;
+
+
+
   }
 
   
@@ -19,6 +23,21 @@ body {
     background-color: $color-dark;
     color: $color-light;
 }
+
+h1 {
+    margin: 0;
+}
+
+.audio-player {
+    margin:auto;
+}
+
+.text {
+    width: 30%;
+    margin:auto;
+    opacity: 0.5;
+}
+
 .green-audio-player .slider .gap-progress .pin{
 background-color: $color-detail;
 }

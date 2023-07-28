@@ -76,9 +76,9 @@ const app = {
       page.classList.toggle(classNames.pages.active, page.id == pageId);
     }
     /* add class active to maching links, remove from non-matching */
-    for (let link of thisApp.navLinks) {
-      link.classList.toggle(classNames.nav.active, link.getAttribute('href') == '#' + pageId);
-    }
+    // for (let link of thisApp.navLinks) {
+    //   link.classList.remove(classNames.nav.active, link.getAttribute('href') == '#' + pageId);
+    // }
 
   },
 

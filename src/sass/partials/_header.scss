@@ -1,7 +1,10 @@
-header {
+.header {
   
     width: 100%;
-    height: 150vh;
+    height: 1100px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
 
     background-image:
     linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 1)),
@@ -9,6 +12,37 @@ header {
     background-size: cover;
     color: white;
   }
+
+  .header__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+
+.logo {
+    margin:auto;
+    text-align: center;
+    justify-content: center;
+    margin-top: 400px;
+}
+
+
+
+.sub-logo {
+    width: 28%;
+    word-wrap: break-word;
+    display: block;
+    position: absolute;
+    left: 650px;
+    
+}
+.sub-logo span {
+    display: block;
+    padding-bottom: 10px;
+    font-size: 50px;
+    font-weight: $font-semibold;
+}
+  
 
 .main-img {
     position: absolute;
@@ -19,12 +53,11 @@ header {
     
 }
 .title {
-    color: #ffff;
+    color: $color-light;
     font-size: 200px;
     letter-spacing: 40px;
     margin-top:  0;
     margin-bottom: 0;
-    margin-left: 200px;
     font-family: $font-header;
     font-weight: 900;
 
@@ -33,7 +66,24 @@ header {
 .subtitle {
     color: #ffff;
     font-size: 90px;
-    width: 20%;
     text-align: center;
     margin: auto;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+    margin: auto;
+
+}
+
+
+.main-nav a {
+    text-decoration: none;
+    color: inherit; 
+    cursor: pointer;
+    font-weight: 600;
+    
+
 }
