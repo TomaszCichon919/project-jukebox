@@ -1,90 +1,89 @@
 .header {
   
-    width: 100%;
-    height: 1100px;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
+  width: 100%;
+  height: 1100px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 
-    background-image:
-    linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 1)),
+  background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 1)),
     url('../../images/background.jpg');
-    background-size: cover;
-    color: white;
-  }
+  background-size: cover;
+  color: white;
+}
 
-  .header__wrapper {
+.header__wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  }
+}
 
 .logo {
-    margin:auto;
-    text-align: center;
-    justify-content: center;
-    margin-top: 400px;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  margin-top: 350px;
 }
-
-
 
 .sub-logo {
-    width: 28%;
-    word-wrap: break-word;
-    display: block;
-    position: absolute;
-    left: 650px;
+  width: 28%;
+  word-wrap: break-word;
+  display: block;
+  position: absolute;
+  left: 35%;
     
 }
+
 .sub-logo span {
-    display: block;
-    padding-bottom: 10px;
-    font-size: 50px;
-    font-weight: $font-semibold;
+  display: block;
+  padding-bottom: 10px;
+  font-size: 2rem;
+  font-weight: $font-bold;
+  letter-spacing: $spacing;
 }
   
 
 .main-img {
-    position: absolute;
-    width: 100%;
-    height: 150vh;
-    z-index: -1;
-    margin: 0;
+  position: absolute;
+  width: 100%;
+  height: 150vh;
+  z-index: -1;
+  margin: 0;
     
 }
+
 .title {
-    color: $color-light;
-    font-size: 200px;
-    letter-spacing: 40px;
-    margin-top:  0;
-    margin-bottom: 0;
-    font-family: $font-header;
-    font-weight: 900;
+  color: $color-light;
+  padding-left: 30px;
+  font-size: 13rem;
+  letter-spacing: 60px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: $font-header;
+  font-weight: $font-bold;
 
     
 }
+
 .subtitle {
-    color: #ffff;
-    font-size: 90px;
-    text-align: center;
-    margin: auto;
+  color: #ffff;
+  font-size: 90px;
+  text-align: center;
+  margin: auto;
 }
 
 .main-nav {
-    display: flex;
-    justify-content: space-between;
-    width: 25%;
-    margin: auto;
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+  margin: auto;
 
 }
 
 
 .main-nav a {
-    text-decoration: none;
-    color: inherit; 
-    cursor: pointer;
-    font-size: 1.5rem;
-    
-    
-
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1.5rem;
 }

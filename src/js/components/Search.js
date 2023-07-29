@@ -130,14 +130,14 @@ class Search {
 
 
       
-      const generatedHTML = templates.resultCounter(thisSearch.resultCount);
+    const generatedHTML = templates.resultCounter(thisSearch.resultCount);
     
-      thisSearch.element = utils.createDOMFromHTML(generatedHTML);
+    thisSearch.element = utils.createDOMFromHTML(generatedHTML);
    
-      const resultContainer = document.querySelector(select.containerOf.result);
+    const resultContainer = document.querySelector(select.containerOf.result);
    
-      resultContainer.appendChild(thisSearch.element);
-} 
+    resultContainer.appendChild(thisSearch.element);
+  } 
 
 
   initWidget () {

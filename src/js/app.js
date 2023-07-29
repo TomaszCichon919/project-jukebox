@@ -24,7 +24,7 @@ const app = {
 
     const thisApp = this;
    
-    thisApp.capslock = document.querySelectorAll('.header, .main-nav, .subscribe-text, .new-album, .join');
+    thisApp.capslock = document.querySelectorAll('.header, .main-nav, .subscribe-text, .new-album, .join, .page-name, .search-btn');
     console.log('capslock', thisApp.capslock);
   
     thisApp.capslock.forEach((div) => {
@@ -37,7 +37,7 @@ const app = {
     const thisApp = this;
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
 
-
+console.log('pagessss', thisApp.pages);
     thisApp.navLinks = document.querySelectorAll('.main-nav a');
 
     const idFromHash = window.location.hash.replace('#/', '');
@@ -76,9 +76,9 @@ const app = {
       page.classList.toggle(classNames.pages.active, page.id == pageId);
     }
     /* add class active to maching links, remove from non-matching */
-     for (let link of thisApp.navLinks) {
-       link.classList.toggle(classNames.nav.bold, link.getAttribute('href') == '#' + pageId);
-     }
+    for (let link of thisApp.navLinks) {
+      link.classList.toggle(classNames.nav.bold, link.getAttribute('href') == '#' + pageId);
+    }
 
   },
 
@@ -108,12 +108,13 @@ const app = {
       if (thisApp.data.songs[songData].id == randomIndex) {
         console.log('random song', thisApp.data.songs[songData]);
         thisApp.discover = new Discover(thisApp.data.songs[songData]);
-      };
-    };
+      }
+    }
 
   },
 
   initWidget() {
+    // eslint-disable-next-line no-undef
     GreenAudioPlayer.init({
       selector: '.player',
       stopOthersOnPlay: true

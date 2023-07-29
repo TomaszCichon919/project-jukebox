@@ -2,8 +2,8 @@
 export const select = {
 
   templateOf: {
-    player: "#template-player",
-    resultCounter: "#template-result",
+    player: '#template-player',
+    resultCounter: '#template-result',
   },
   
   nav: {
@@ -17,10 +17,10 @@ export const select = {
     discover: '.discover-wrapper',
     result: '.result',
   },
- search: {
-  input: '[name="search"]',
-  pagetop: '.pagetop',
-  audio: '.audio-player',
+  search: {
+    input: '[name="search"]',
+    pagetop: '.pagetop',
+    audio: '.audio-player',
 
   }
 };
@@ -49,7 +49,7 @@ export const settings = {
     bookings: 'bookings',
   },
 };
-  export const templates = {
-    player: Handlebars.compile(document.querySelector(select.templateOf.player).innerHTML),
-    resultCounter: Handlebars.compile(document.querySelector(select.templateOf.resultCounter).innerHTML),
+export const templates = {
+  player: Handlebars.compile(document.querySelector(select.templateOf.player).innerHTML),
+  resultCounter: Handlebars.compile(document.querySelector(select.templateOf.resultCounter).innerHTML),
 };

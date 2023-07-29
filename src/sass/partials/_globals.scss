@@ -1,74 +1,95 @@
 
-
-
 *, *::before, *::after {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
+
 .container {
-    width: 70%;
-    padding: 0 20px;
-    margin: auto;
-    text-align: center;
+  width: 70%;
+  padding: 0 20px;
+  margin: auto;
+  text-align: center;
 
-
-
-  }
+}
 
   
 body {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    box-sizing: border-box;
-    background-color: $color-dark;
-    color: $color-light;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  background-color: $color-dark;
+  color: $color-light;
 }
 
 h1 {
-    margin: 0;
+  margin: 0;
 }
 
 .audio-player {
-    margin:auto;
+  margin: auto;
 }
 
 .text {
-    width: 30%;
-    margin:auto;
-    opacity: 0.5;
+  width: 35%;
+  margin: auto;
+  opacity: 0.5;
 }
 
 .green-audio-player .slider .gap-progress .pin{
-background-color: $color-detail;
+  background-color: $color-detail;
 }
+
 #pages {
-    > * {
-      display: none;
-    }
-  
-    > .active {
-      display: block;
-    }
+  > * {
+    display: none;
   }
-  .active {
+  
+  > .active {
     display: block;
   }
-  .bold {
-    font-weight: 700;
-  }
+}
+
+.active {
+  display: block;
+}
+
+.bold {
+  font-weight: 700;
+}
 
 .btn-primary {
-    background-color: $color-detail;
-    border-color: $color-detail;
+  background-color: $color-detail;
+  border-color: $color-detail;
 }
+
 .btn-primary:hover{
-    background-color: $color-detail;
-    border-color: $color-detail;
-    transition: none;
+  background-color: $color-detail;
+  border-color: $color-detail;
+  transition: none;
 }
+
 .btn-primary:focus {
-    background-color:$color-detail !important;
-    border: 0 !important;
-    box-shadow: none !important;
- }
+  background-color: $color-detail !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.page-name {
+  text-align: center;
+  padding-bottom: 10px;
+  letter-spacing: $spacing;
+  opacity: 0.8;
+}
+
+.footer {
+  height: 100px;
+  background-color: $color-dark;
+  align-items: center;
+  justify-content: center;
+
+}
+.footer span {
+  letter-spacing: $spacing-small;
+  
+}
 
