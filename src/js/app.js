@@ -37,7 +37,6 @@ const app = {
     const thisApp = this;
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
 
-console.log('pagessss', thisApp.pages);
     thisApp.navLinks = document.querySelectorAll('.main-nav a');
 
     const idFromHash = window.location.hash.replace('#/', '');
@@ -84,29 +83,23 @@ console.log('pagessss', thisApp.pages);
 
   initPlayer: function () {
     const thisApp = this;
-    //console.log('thisApp.data:', thisApp.data);
+  
 
     for (let songData in thisApp.data.songs) {
       new Song(thisApp.data.songs[songData].id, thisApp.data.songs[songData]);
-      //console.log(songData);
     }
 
   },
   initShuffler() {
-    console.log('hello333');
     const thisApp = this;
     for (const songData in thisApp.data.songs) {
       shuffleBin.push(thisApp.data.songs[songData].id);
-
     }
-    //console.log('shufflebin', shuffleBin);
-    //console.log('shufflebin length', shuffleBin.length);
+
     const randomIndex = (Math.floor(Math.random() * (shuffleBin.length)+1));
-    //console.log("randomindex", randomIndex);
 
     for (const songData in thisApp.data.songs) {
       if (thisApp.data.songs[songData].id == randomIndex) {
-        console.log('random song', thisApp.data.songs[songData]);
         thisApp.discover = new Discover(thisApp.data.songs[songData]);
       }
     }
@@ -132,18 +125,12 @@ console.log('pagessss', thisApp.pages);
         return rawResponse.json();
       })
       .then(function (parsedResponse) {
-        // console.log('parsedResponse', parsedResponse);
-
-        /* save parsedResponse as thisApp.data.products */
+       
         thisApp.data.songs = parsedResponse;
 
-        // /* execute initMenu method */
         thisApp.initPlayer();
         thisApp.initShuffler();
-        console.log('hello', thisApp.data);
-
       });
-    //console.log("thisApp.data", JSON.stringify(thisApp.data));
   },
 
   initSearch: function () {
@@ -156,11 +143,6 @@ console.log('pagessss', thisApp.pages);
 
   init: function () {
     const thisApp = this;
-    // console.log('*** App starting ***');
-    // console.log('thisApp:', thisApp);
-    // console.log('classNames:', classNames);
-    // console.log('settings:', settings);
-    // console.log('templates:', templates);
     thisApp.initData();
     thisApp.toUpperCase();
     thisApp.initPages();

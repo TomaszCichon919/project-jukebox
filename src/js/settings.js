@@ -21,7 +21,6 @@ export const select = {
     input: '[name="search"]',
     pagetop: '.pagetop',
     audio: '.audio-player',
-
   }
 };
 
@@ -46,7 +45,6 @@ export const settings = {
     url: '//localhost:3131',
     homePage: 'home',
     songs: 'songs',
-    bookings: 'bookings',
   },
 };
 export const templates = {

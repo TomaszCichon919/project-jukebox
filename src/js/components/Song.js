@@ -13,15 +13,13 @@ class Song {
 
   renderPlayer() {
     const thisSong = this;
-    /*generate HTML based on template*/
+
     const generatedHTML = templates.player(thisSong.data);
-    //console.log(generatedHTML);
-    /* create element using utils.createElementFromHTML */
+
     thisSong.element = utils.createDOMFromHTML(generatedHTML);
-    //console.log("thissong element", thisSong.element);
-    /* find menu container */
+
     const playerContainer = document.querySelector(select.containerOf.home);
-    /* add element to menu */
+
     playerContainer.appendChild(thisSong.element);
   }
 
