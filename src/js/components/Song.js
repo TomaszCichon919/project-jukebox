@@ -6,7 +6,6 @@ class Song {
     const thisSong = this;
     thisSong.id = id;
     thisSong.data = data;
-    thisSong.shuffleBin = [];
     thisSong.renderPlayer();
     console.log('thisSongdata', thisSong.data);
   }
