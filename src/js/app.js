@@ -147,7 +147,7 @@ const app = {
     thisApp.toUpperCase();
     thisApp.initPages();
     thisApp.initSearch();
-    setTimeout(function () { thisApp.initWidget(); }, 900);
+    setTimeout(function () { thisApp.initWidget(); }, 500);
 
 
   },
