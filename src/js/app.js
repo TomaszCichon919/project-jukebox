@@ -1,8 +1,10 @@
-import { settings, select, classNames } from './settings.js';
+import { settings, select, classNames, templates } from './settings.js';
 import Song from './components/Song.js';
 import Discover from './components/Discover.js';
 import Search from './components/Search.js';
+import utils from './utils.js';
 let shuffleBin = [];
+const categoriesContainer = {categories: []};
 const app = {
 
   
@@ -106,6 +108,64 @@ const app = {
 
   },
 
+  categories() {
+    const thisApp = this;
+    for (const songData in thisApp.data.songs) {
+      for( let i = 0; i < thisApp.data.songs[songData].categories.length; i++ ){
+      if (!categoriesContainer.categories.includes(thisApp.data.songs[songData].categories[i])) {
+      categoriesContainer.categories.push(thisApp.data.songs[songData].categories[i]);
+    }
+  }
+}
+  console.log('ello', categoriesContainer);
+  const generatedHTML = templates.categories(categoriesContainer);
+    
+    thisApp.element = utils.createDOMFromHTML(generatedHTML);
+   
+    const categoriesWrapper = document.querySelector(select.containerOf.categories);
+   
+    categoriesWrapper.appendChild(thisApp.element);
+
+
+    thisApp.categoriesNames = document.querySelectorAll('.categories-list a');
+
+    for (let categorie of thisApp.categoriesNames) {
+  
+      categorie.addEventListener('click', function (event) {
+        const clickedElement = this;
+        event.preventDefault();
+        for (let categorie of thisApp.categoriesNames) {
+          if (categorie.classList.contains(classNames.categories.selected)) {
+            categorie.classList.remove(classNames.categories.selected)}
+          }
+        categorie.classList.add(classNames.categories.selected);
+
+        /* get pagfe id from href */
+        const id = clickedElement.getAttribute('id');
+        /* run thisApp.activatePAge with that id */
+        thisApp.activateCategory(id);
+        console.log('selected sth');
+        })
+      
+      
+  
+    }
+  },
+
+   activateCategory: function (id) {
+     const thisApp = this;
+     console.log('hello', id);
+     thisApp.players = document.querySelector(select.containerOf.home).children;
+     console.log('heyyyyy', thisApp.players);
+     /* add class active to maching pages, remove from non-matching */
+     for (let player of thisApp.players) {
+      player.classList.remove(classNames.categories.notcurrent);
+      if (!player.classList.contains(id)){
+       player.classList.add(classNames.categories.notcurrent);
+     }
+   }
+  },
+
   initWidget() {
     // eslint-disable-next-line no-undef
     GreenAudioPlayer.init({
@@ -130,6 +190,7 @@ const app = {
 
         thisApp.initPlayer();
         thisApp.initShuffler();
+        thisApp.categories ();
       });
   },
 
@@ -148,6 +209,7 @@ const app = {
     thisApp.initPages();
     thisApp.initSearch();
     setTimeout(function () { thisApp.initWidget(); }, 500);
+    thisApp.categories();
 
 
   },

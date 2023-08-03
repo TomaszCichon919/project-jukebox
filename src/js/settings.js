@@ -4,6 +4,7 @@ export const select = {
   templateOf: {
     player: '#template-player',
     resultCounter: '#template-result',
+    categories: '#template-categories'
   },
   
   nav: {
@@ -16,6 +17,7 @@ export const select = {
     search: '.search-wrapper',
     discover: '.discover-wrapper',
     result: '.result',
+    categories: '.categories'
   },
   search: {
     input: '[name="search"]',
@@ -28,6 +30,10 @@ export const classNames = {
   search: {
     standardPlayer: 'player',
     searchPlayer: 'player2',
+  },
+  categories: {
+    notcurrent: 'notcurrent',
+    selected: 'selected'
   },
  
   nav: {
@@ -50,4 +56,5 @@ export const settings = {
 export const templates = {
   player: Handlebars.compile(document.querySelector(select.templateOf.player).innerHTML),
   resultCounter: Handlebars.compile(document.querySelector(select.templateOf.resultCounter).innerHTML),
+  categories: Handlebars.compile(document.querySelector(select.templateOf.categories).innerHTML),
 };
