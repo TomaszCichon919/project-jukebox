@@ -4,17 +4,17 @@ import Discover from './components/Discover.js';
 import Search from './components/Search.js';
 import utils from './utils.js';
 let shuffleBin = [];
-const categoriesContainer = {categories: []};
+const categoriesContainer = { categories: [] };
 const app = {
 
-  
-  convertTextToUppercase: function(element){
-    const thisApp=this;
+
+  convertTextToUppercase: function (element) {
+    const thisApp = this;
     if (element.nodeType === Node.TEXT_NODE) {
-      
+
       element.textContent = element.textContent.toUpperCase();
     } else if (element.nodeType === Node.ELEMENT_NODE) {
-     
+
       const childNodes = element.childNodes;
       for (let i = 0; i < childNodes.length; i++) {
         thisApp.convertTextToUppercase(childNodes[i]);
@@ -22,19 +22,19 @@ const app = {
     }
   },
 
-  toUpperCase: function() {
+  toUpperCase: function () {
 
     const thisApp = this;
-   
+
     thisApp.capslock = document.querySelectorAll('.header, .main-nav, .subscribe-text, .new-album, .join, .page-name, .search-btn');
     console.log('capslock', thisApp.capslock);
-  
+
     thisApp.capslock.forEach((div) => {
       thisApp.convertTextToUppercase(div);
     });
-  
+
   },
-  
+
   initPages: function () {
     const thisApp = this;
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
@@ -85,7 +85,7 @@ const app = {
 
   initPlayer: function () {
     const thisApp = this;
-  
+
 
     for (let songData in thisApp.data.songs) {
       new Song(thisApp.data.songs[songData].id, thisApp.data.songs[songData]);
@@ -98,7 +98,7 @@ const app = {
       shuffleBin.push(thisApp.data.songs[songData].id);
     }
 
-    const randomIndex = (Math.floor(Math.random() * (shuffleBin.length)+1));
+    const randomIndex = (Math.floor(Math.random() * (shuffleBin.length) + 1));
 
     for (const songData in thisApp.data.songs) {
       if (thisApp.data.songs[songData].id == randomIndex) {
@@ -111,60 +111,70 @@ const app = {
   categories() {
     const thisApp = this;
     for (const songData in thisApp.data.songs) {
-      for( let i = 0; i < thisApp.data.songs[songData].categories.length; i++ ){
-      if (!categoriesContainer.categories.includes(thisApp.data.songs[songData].categories[i])) {
-      categoriesContainer.categories.push(thisApp.data.songs[songData].categories[i]);
+      for (let i = 0; i < thisApp.data.songs[songData].categories.length; i++) {
+        if (!categoriesContainer.categories.includes(thisApp.data.songs[songData].categories[i])) {
+          categoriesContainer.categories.push(thisApp.data.songs[songData].categories[i]);
+        }
+      }
     }
-  }
-}
-  console.log('ello', categoriesContainer);
-  const generatedHTML = templates.categories(categoriesContainer);
-    
+    console.log('ello', categoriesContainer);
+    const generatedHTML = templates.categories(categoriesContainer);
+
     thisApp.element = utils.createDOMFromHTML(generatedHTML);
-   
+
     const categoriesWrapper = document.querySelector(select.containerOf.categories);
-   
+
     categoriesWrapper.appendChild(thisApp.element);
 
-
     thisApp.categoriesNames = document.querySelectorAll('.categories-list a');
+    
+    thisApp.players = document.querySelector(select.containerOf.home).children;
+    console.log('heyyyyy', thisApp.players);
 
     for (let categorie of thisApp.categoriesNames) {
   
       categorie.addEventListener('click', function (event) {
         const clickedElement = this;
         event.preventDefault();
+        console.log ('event ttt', event.target);
+        if (event.target.classList.contains(classNames.categories.selected)){
+          event.target.classList.remove(classNames.categories.selected);
+          for (let player of thisApp.players) {
+          player.classList.remove(classNames.categories.notcurrent);
+          }
+        } else {
         for (let categorie of thisApp.categoriesNames) {
           if (categorie.classList.contains(classNames.categories.selected)) {
             categorie.classList.remove(classNames.categories.selected)}
           }
-        categorie.classList.add(classNames.categories.selected);
+          categorie.classList.add(classNames.categories.selected);
 
         /* get pagfe id from href */
         const id = clickedElement.getAttribute('id');
         /* run thisApp.activatePAge with that id */
         thisApp.activateCategory(id);
         console.log('selected sth');
+        }
         })
       
-      
+    
   
     }
   },
 
-   activateCategory: function (id) {
-     const thisApp = this;
-     console.log('hello', id);
-     thisApp.players = document.querySelector(select.containerOf.home).children;
-     console.log('heyyyyy', thisApp.players);
-     /* add class active to maching pages, remove from non-matching */
-     for (let player of thisApp.players) {
-      player.classList.remove(classNames.categories.notcurrent);
-      if (!player.classList.contains(id)){
-       player.classList.add(classNames.categories.notcurrent);
-     }
-   }
-  },
+  activateCategory: function (id) {
+    const thisApp = this;
+    console.log('hello', id);
+    /* add class active to maching pages, remove from non-matching */
+    for (let player of thisApp.players) {
+     player.classList.remove(classNames.categories.notcurrent);
+     if (!player.classList.contains(id)){
+      player.classList.add(classNames.categories.notcurrent);
+    }
+  }
+ },
+
+
 
   initWidget() {
     // eslint-disable-next-line no-undef
@@ -185,12 +195,12 @@ const app = {
         return rawResponse.json();
       })
       .then(function (parsedResponse) {
-       
+
         thisApp.data.songs = parsedResponse;
 
         thisApp.initPlayer();
         thisApp.initShuffler();
-        thisApp.categories ();
+        thisApp.categories();
       });
   },
 
