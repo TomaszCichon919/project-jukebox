@@ -95,7 +95,7 @@ h1 {
 }
 .selected {
   font-weight: $font-bold;
-  background-color: $color-detail;
+  color: $color-detail !important;
 
 }
 

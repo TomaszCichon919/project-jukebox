@@ -1,3 +1,21 @@
+.categories {
+  color: $color-light;
+  font-family: $font-header;
+  letter-spacing: $spacing-small;
+
+}
+
+.categories .col {
+  text-align: center;
+}
+
+.categories-list a {
+  text-decoration: none;
+  color: $color-light;
+  cursor: pointer;
+}
+
+
 .subscribe {
   position: relative;
   margin-top: 100px;
@@ -74,3 +92,4 @@
   font-weight: $font-bold;
   letter-spacing: $spacing;
 }
+

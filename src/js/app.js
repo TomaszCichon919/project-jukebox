@@ -4,7 +4,7 @@ import Discover from './components/Discover.js';
 import Search from './components/Search.js';
 import utils from './utils.js';
 let shuffleBin = [];
-const categoriesContainer = { categories: [] };
+
 const app = {
 
 
@@ -110,6 +110,7 @@ const app = {
 
   categories() {
     const thisApp = this;
+    const categoriesContainer = { categories: [] };
     for (const songData in thisApp.data.songs) {
       for (let i = 0; i < thisApp.data.songs[songData].categories.length; i++) {
         if (!categoriesContainer.categories.includes(thisApp.data.songs[songData].categories[i])) {
@@ -219,7 +220,7 @@ const app = {
     thisApp.initPages();
     thisApp.initSearch();
     setTimeout(function () { thisApp.initWidget(); }, 500);
-    thisApp.categories();
+  
 
 
   },

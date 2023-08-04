@@ -34,7 +34,7 @@
       </div>
     </div>
   </header>
-  <div class="main-nav py-5 row">
+  <div class="main-nav pt-5 pb-2 row">
     <div class="col">
     <a href="#home">Home</a>
     </div>
@@ -47,7 +47,7 @@
   </div>
   <div id="pages">
     <section id="home">
-      <div class="categories container">
+      <div class="categories container pb-4">
       </div>
       <div class="container home-wrapper">
       </div>
@@ -116,10 +116,8 @@
     </script>
     <script id="template-categories" type="text/x-handlebars-template">
         <div class="row">
-          <div class="col">
-            <span>categories:</span>
-          </div>
           <div class="col categories-list">
+            <span>Categories:</span>
               {{#each categories}}
               <a id ="{{this}}">{{this}}</a>
               {{/each}}
