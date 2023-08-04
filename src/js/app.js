@@ -4,7 +4,7 @@ import Discover from './components/Discover.js';
 import Search from './components/Search.js';
 import utils from './utils.js';
 let shuffleBin = [];
-
+const categoriesContainer = { categories: [] };
 const app = {
 
 
@@ -110,7 +110,6 @@ const app = {
 
   categories() {
     const thisApp = this;
-    const categoriesContainer = { categories: [] };
     for (const songData in thisApp.data.songs) {
       for (let i = 0; i < thisApp.data.songs[songData].categories.length; i++) {
         if (!categoriesContainer.categories.includes(thisApp.data.songs[songData].categories[i])) {
@@ -127,39 +126,53 @@ const app = {
 
     categoriesWrapper.appendChild(thisApp.element);
 
-    thisApp.categoriesNames = document.querySelectorAll('.categories-list a');
+    // generated categorie select in Search //
+
+    const generatedHTML2 = templates.categorieSearch(categoriesContainer);
     
+    thisApp.categorieElement = utils.createDOMFromHTML(generatedHTML2);
+
+   
+    const categorieSelect = document.querySelector(select.containerOf.categoriesSearch);
+   
+    categorieSelect.appendChild(thisApp.categorieElement);
+
+      // generated categorie select in Search //
+
+    thisApp.categoriesNames = document.querySelectorAll('.categories-list a');
+
     thisApp.players = document.querySelector(select.containerOf.home).children;
     console.log('heyyyyy', thisApp.players);
 
     for (let categorie of thisApp.categoriesNames) {
-  
+
       categorie.addEventListener('click', function (event) {
         const clickedElement = this;
         event.preventDefault();
-        console.log ('event ttt', event.target);
-        if (event.target.classList.contains(classNames.categories.selected)){
+        console.log('event ttt', event.target);
+        if (event.target.classList.contains(classNames.categories.selected)) {
           event.target.classList.remove(classNames.categories.selected);
           for (let player of thisApp.players) {
-          player.classList.remove(classNames.categories.notcurrent);
+            player.classList.remove(classNames.categories.notcurrent);
           }
         } else {
-        for (let categorie of thisApp.categoriesNames) {
-          if (categorie.classList.contains(classNames.categories.selected)) {
-            categorie.classList.remove(classNames.categories.selected)}
+          for (let categorie of thisApp.categoriesNames) {
+            if (categorie.classList.contains(classNames.categories.selected)) {
+              categorie.classList.remove(classNames.categories.selected)
+            }
           }
           categorie.classList.add(classNames.categories.selected);
 
-        /* get pagfe id from href */
-        const id = clickedElement.getAttribute('id');
-        /* run thisApp.activatePAge with that id */
-        thisApp.activateCategory(id);
-        console.log('selected sth');
+          /* get pagfe id from href */
+          const id = clickedElement.getAttribute('id');
+          /* run thisApp.activatePAge with that id */
+          thisApp.activateCategory(id);
+          console.log('selected sth');
         }
-        })
-      
-    
-  
+      })
+
+
+
     }
   },
 
@@ -168,12 +181,12 @@ const app = {
     console.log('hello', id);
     /* add class active to maching pages, remove from non-matching */
     for (let player of thisApp.players) {
-     player.classList.remove(classNames.categories.notcurrent);
-     if (!player.classList.contains(id)){
-      player.classList.add(classNames.categories.notcurrent);
+      player.classList.remove(classNames.categories.notcurrent);
+      if (!player.classList.contains(id)) {
+        player.classList.add(classNames.categories.notcurrent);
+      }
     }
-  }
- },
+  },
 
 
 
@@ -207,6 +220,7 @@ const app = {
 
   initSearch: function () {
     const thisApp = this;
+    console.log('are you there?', categoriesContainer);
     const searchElem = document.querySelector(select.containerOf.search);
     thisApp.search = new Search(searchElem);
   },
@@ -220,7 +234,7 @@ const app = {
     thisApp.initPages();
     thisApp.initSearch();
     setTimeout(function () { thisApp.initWidget(); }, 500);
-  
+
 
 
   },

@@ -72,6 +72,8 @@
           <div class="mb-3 ps-3">
             <input type="text" class="form-control" id="search-field" aria-describedby="search" name="search">
           </div>
+          <div class="categorie-search">
+          </div>
           <div class="mb-3 ps-3">
             <button type="submit" class ="search-btn btn btn-primary">Search</button>
           </div>
@@ -123,6 +125,14 @@
               {{/each}}
           </div>
         </div>
+    </script>
+    <script id="template-categorie-search" type="text/x-handlebars-template">
+      <select class="form-select" aria-label="Default select example">
+        <option selected>All</option>
+        {{#each categories}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
     </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

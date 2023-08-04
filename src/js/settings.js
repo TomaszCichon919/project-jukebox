@@ -4,7 +4,8 @@ export const select = {
   templateOf: {
     player: '#template-player',
     resultCounter: '#template-result',
-    categories: '#template-categories'
+    categories: '#template-categories',
+    categoriesSearch: '#template-categorie-search',
   },
   
   nav: {
@@ -17,11 +18,13 @@ export const select = {
     search: '.search-wrapper',
     discover: '.discover-wrapper',
     result: '.result',
-    categories: '.categories'
+    categories: '.categories',
+    categoriesSearch: '.categorie-search'
   },
   search: {
     input: '[name="search"]',
     pagetop: '.pagetop',
+    categorieSearch: '.categorie-search',
     audio: '.audio-player',
   }
 };
@@ -57,4 +60,5 @@ export const templates = {
   player: Handlebars.compile(document.querySelector(select.templateOf.player).innerHTML),
   resultCounter: Handlebars.compile(document.querySelector(select.templateOf.resultCounter).innerHTML),
   categories: Handlebars.compile(document.querySelector(select.templateOf.categories).innerHTML),
+  categorieSearch: Handlebars.compile(document.querySelector(select.templateOf.categoriesSearch).innerHTML),
 };
