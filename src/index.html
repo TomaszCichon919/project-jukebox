@@ -100,7 +100,7 @@
           <h3 class="song-title pb-5">{{ author }} - {{ title }}</h3>
           <article class="song">
             <div class="player audio-player">
-              <audio>
+              <audio class="{{#each categories}}{{ this }} {{/each}}" text="play-file">
                 <source src="songs/{{ filename }}" type="audio/mpeg">
               </audio>
             </div>

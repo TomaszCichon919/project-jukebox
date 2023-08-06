@@ -5,6 +5,7 @@ class Discover {
     const thisDiscover = this;
     thisDiscover.randomSong = randomSong;
     thisDiscover.randomPlayer();
+    //thisDiscover.initWidget();
   }
 
   randomPlayer() {
@@ -18,6 +19,14 @@ class Discover {
 
     playerContainer.appendChild(thisDiscover.element);
   }
+
+  // initWidget() {
+  //   // eslint-disable-next-line no-undef
+  //   GreenAudioPlayer.init({
+  //     selector: '.player',
+  //     stopOthersOnPlay: true
+  //   });
+  // }
 
 }
 

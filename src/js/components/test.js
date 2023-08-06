@@ -218,3 +218,80 @@ class Search {
 
 
 export default Search;
++
+
+
+
+
+function countElements(arr) {
+  const elementCount = {}; // Initialize an empty object to store element counts
+
+  arr.forEach((element) => {
+    if (element in elementCount) {
+      elementCount[element]++;
+    } else {
+      elementCount[element] = 1;
+    }
+  });
+
+  return elementCount;
+}
+
+// Example usage:
+const myArray = [1, 2, 3, 2, 4, 1, 5, 3, 2];
+const result = countElements(myArray);
+console.log(result); // Output: {1: 2, 2: 3, 3: 2, 4: 1, 5: 1}
+
+function getKeyWithBiggestValue(obj) {
+  let maxKey = null;
+  let maxValue = -Infinity;
+
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const value = obj[key];
+      if (value > maxValue) {
+        maxValue = value;
+        maxKey = key;
+      }
+    }
+  }
+
+  return maxKey;
+}
+
+// Example usage:
+const myObject = { Fun: 2, Powerful: 3, white: 1 };
+const result = getKeyWithBiggestValue(myObject);
+console.log(result); // Output: "Powerful"
+
+
+const playerInstance = greenAudioPlayer.getPlayers('.green-audio-player')[0];
+
+// Add event listener for the play event
+playerInstance.on('gap.play', function () {
+  console.log('Audio started playing!');
+  // Add your custom logic here when the audio starts playing
+});
+
+
+
+// function findKeyWithMaxValue(obj) {
+//   let maxKey = null;
+//   let maxValue = -Infinity;
+//   let draw = false;
+
+//   for (const key in obj) {
+//     if (obj.hasOwnProperty(key)) {
+//       const value = obj[key];
+//       if (value > maxValue) {
+//         maxValue = value;
+//         maxKey = key;
+//         draw = false; // Reset draw flag if we find a new maximum value
+//       } else if (value === maxValue) {
+//         draw = true; // Set draw flag if the current value is the same as the current maximum value
+//       }
+//     }
+//   }
+
+//   return draw ? 'draw' : maxKey;
+// }

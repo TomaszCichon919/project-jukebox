@@ -95,14 +95,18 @@ const app = {
   initShuffler() {
     const thisApp = this;
     for (const songData in thisApp.data.songs) {
+      for (let i = 0; i < thisApp.data.songs[songData].categories.length; i++) {
+        if (thisApp.data.songs[songData].categories[i] == thisApp.maxKey) {
       shuffleBin.push(thisApp.data.songs[songData].id);
     }
-
+  }
+}
+console.log('shufflebin', shuffleBin);
     const randomIndex = (Math.floor(Math.random() * (shuffleBin.length) + 1));
 
     for (const songData in thisApp.data.songs) {
       if (thisApp.data.songs[songData].id == randomIndex) {
-        thisApp.discover = new Discover(thisApp.data.songs[songData]);
+        thisApp.discover = new Discover(thisApp.data.songs[songData], thisApp.choiceContainer);
       }
     }
 
@@ -191,12 +195,14 @@ const app = {
 
 
   initWidget() {
+    const thisApp = this;
     // eslint-disable-next-line no-undef
     GreenAudioPlayer.init({
       selector: '.player',
       stopOthersOnPlay: true
     });
-
+    thisApp.preferenceChecker ();
+    thisApp.initShuffler();
   },
 
   initData: function () {
@@ -213,7 +219,6 @@ const app = {
         thisApp.data.songs = parsedResponse;
 
         thisApp.initPlayer();
-        thisApp.initShuffler();
         thisApp.categories();
       });
   },
@@ -225,7 +230,88 @@ const app = {
     thisApp.search = new Search(searchElem);
   },
 
+  preferenceChecker (){
+    const thisApp = this;
+    const catArray = [];
+    const playerContainer = document.querySelectorAll('[text="play-file"]');
+//console.log('makarena', playerContainer);
+    for (let player of playerContainer){
+     player.addEventListener('play', function (event) {
+      const categorieAttribute = event.target.classList.toString();
+      const singleCategory= categorieAttribute.split(' ');
+      const newArray = singleCategory.filter(item => item !== '');
+      console.log('elllllllelllel', newArray);
+      for(let i=0; i<newArray.length; i++) {
+        catArray.push(newArray[i]);
+      }
+      console.log('array', catArray);
+      thisApp.countElements(catArray);
+  
+    })
+  }
+},
 
+countElements(arr) {
+  const thisApp = this;
+  const elementCount = {}; // Initialize an empty object to store element counts
+
+  arr.forEach((element) => {
+    if (element in elementCount) {
+      elementCount[element]++;
+    } else {
+      elementCount[element] = 1;
+    }
+  });
+
+  console.log('object', elementCount);
+  thisApp.getKeyWithBiggestValue(elementCount);
+},
+  
+
+getKeyWithBiggestValue(obj) {
+  const thisApp = this;
+  thisApp.maxKey = null;
+  let maxValue = -Infinity;
+  let draw = 'draw';
+
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const value = obj[key];
+      if (value > maxValue) {
+        maxValue = value;
+        thisApp.maxKey = key;
+      } else if (value === maxValue) {
+        thisApp.maxKey = draw; // Set draw flag if the current value is the same as the current maximum value
+      }
+    }
+  }
+
+  console.log ('played the most', thisApp.maxKey);
+  return thisApp.maxKey;
+},
+
+
+
+// function findKeyWithMaxValue(obj) {
+//   let maxKey = null;
+//   let maxValue = -Infinity;
+//   let draw = false;
+
+//   for (const key in obj) {
+//     if (obj.hasOwnProperty(key)) {
+//       const value = obj[key];
+//       if (value > maxValue) {
+//         maxValue = value;
+//         maxKey = key;
+//         draw = false; // Reset draw flag if we find a new maximum value
+//       } else if (value === maxValue) {
+//         draw = true; // Set draw flag if the current value is the same as the current maximum value
+//       }
+//     }
+//   }
+
+//   return draw ? 'draw' : maxKey;
+// }
 
   init: function () {
     const thisApp = this;
@@ -240,6 +326,5 @@ const app = {
   },
 
 };
-
 
 app.init();
