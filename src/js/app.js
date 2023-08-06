@@ -137,7 +137,7 @@ const app = {
    
     categorieSelect.appendChild(thisApp.categorieElement);
 
-      // generated categorie select in Search //
+    // generated categorie select in Search //
 
     thisApp.categoriesNames = document.querySelectorAll('.categories-list a');
 
@@ -158,7 +158,7 @@ const app = {
         } else {
           for (let categorie of thisApp.categoriesNames) {
             if (categorie.classList.contains(classNames.categories.selected)) {
-              categorie.classList.remove(classNames.categories.selected)
+              categorie.classList.remove(classNames.categories.selected);
             }
           }
           categorie.classList.add(classNames.categories.selected);
@@ -169,7 +169,7 @@ const app = {
           thisApp.activateCategory(id);
           console.log('selected sth');
         }
-      })
+      });
 
 
 
