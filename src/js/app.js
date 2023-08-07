@@ -44,7 +44,7 @@ const app = {
     const idFromHash = window.location.hash.replace('#/', '');
 
 
-    let pageMatchingHash = thisApp.pages[2].id;
+    let pageMatchingHash = thisApp.pages[0].id;
 
     for (let page of thisApp.pages) {
       if (page.id == idFromHash) {
@@ -176,9 +176,6 @@ const app = {
           console.log('selected sth');
         }
       });
-
-
-
     }
   },
 
@@ -250,7 +247,7 @@ const app = {
         console.log('array', catArray);
         thisApp.countElements(catArray);
 
-      })
+      });
     }
   },
 
@@ -299,16 +296,17 @@ const app = {
     if (thisApp.maxKey == 'draw') {
       for (const songData in thisApp.data.songs) {
         shuffleBin.push(thisApp.data.songs[songData].id);
+      }
+      console.log('shufflebin draw', shuffleBin);
+    } else {
+      for (const songData in thisApp.data.songs) {
+        for (let i = 0; i < thisApp.data.songs[songData].categories.length; i++) {
+          if (thisApp.data.songs[songData].categories[i] == thisApp.maxKey) {
+            shuffleBin.push(thisApp.data.songs[songData].id);
+          }
+        }
+      }
     }
-    console.log('shufflebin draw', shuffleBin);
-  } else {
-    for (const songData in thisApp.data.songs) {
-      for (let i = 0; i < thisApp.data.songs[songData].categories.length; i++) {
-        if (thisApp.data.songs[songData].categories[i] == thisApp.maxKey) {
-          shuffleBin.push(thisApp.data.songs[songData].id);}
-    }
-  }
-}
     console.log('shufflebin with categorie', shuffleBin);
     const randomIndex = (Math.floor(Math.random() * (shuffleBin.length)));
 
@@ -322,28 +320,6 @@ const app = {
 
   },
 
-
-
-  // function findKeyWithMaxValue(obj) {
-  //   let maxKey = null;
-  //   let maxValue = -Infinity;
-  //   let draw = false;
-
-  //   for (const key in obj) {
-  //     if (obj.hasOwnProperty(key)) {
-  //       const value = obj[key];
-  //       if (value > maxValue) {
-  //         maxValue = value;
-  //         maxKey = key;
-  //         draw = false; // Reset draw flag if we find a new maximum value
-  //       } else if (value === maxValue) {
-  //         draw = true; // Set draw flag if the current value is the same as the current maximum value
-  //       }
-  //     }
-  //   }
-
-  //   return draw ? 'draw' : maxKey;
-  // }
 
   init: function () {
     const thisApp = this;

@@ -7,6 +7,12 @@
   font-weight: $font-semibold;
   opacity: 0.8;
 }
+.categorie-name span {
+  letter-spacing: $spacing-small;
+  font-weight: $font-semibold;
+  opacity: 0.8;
+}
+
 
 .search-btn {
   letter-spacing: $spacing-small;
@@ -21,3 +27,26 @@
   letter-spacing: $spacing-small;
 }
 
+.form-select {
+  letter-spacing: $spacing-small;
+  font-weight: $font-semibold;
+}
+
+.search-categorie {
+  letter-spacing: $spacing-small;
+  font-weight: $font-semibold;
+}
+.pagetop {
+  width: 100%;
+}
+
+.form-select {
+  width: 200px;
+  
+}
+.form-control { 
+  width: 200px;
+}
+.categorie-search {
+  padding-right: 60px;
+}

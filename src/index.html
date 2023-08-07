@@ -61,7 +61,6 @@
         <!-- html-validate:on -->
         <span class="new-album">new album</span>
         <span class="subscribers-only">Avaliable only for subscribers</span>
-
       </div>
     </section>
     <section id="search">
@@ -72,10 +71,15 @@
           <div class="mb-3 ps-3">
             <input type="text" class="form-control" id="search-field" aria-describedby="search" name="search">
           </div>
+          <div class="categorie-name pt-1 px-4"><span>Category</span></div>
           <div class="categorie-search">
           </div>
-          <div class="mb-3 ps-3">
+        </form>
+        <form class="d-flex justify-content-center">
+          <div class="my-3 ps-3 row">
+            <div class="col">
             <button type="submit" class ="search-btn btn btn-primary">Search</button>
+            </div>
           </div>
         </form>
       </div>
@@ -85,8 +89,8 @@
       </div>
     </section>
     <section id="discover">
+      <h1 class="page-name">Discover</h1>
       <div class="discover-wrapper container">
-        <h1 class="page-name">Discover</h1>
       </div>
     </section>
   </div>
@@ -130,7 +134,7 @@
       <select class="form-select" aria-label="Default select example">
         <option selected>All</option>
         {{#each categories}}
-        <option value="{{this}}">{{this}}</option>
+        <option class="search-categorie" value="{{this}}">{{this}}</option>
         {{/each}}
       </select>
     </script>
