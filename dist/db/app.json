@@ -1,0 +1,36 @@
+{
+    "songs": [
+        {
+            "id": 1,
+            "title": "At The Top",
+            "author": "David Renda",
+            "filename": "At_The_Top_David_Renda.mp3",
+            "categories": ["Powerful", "Mystery"],
+            "ranking": 1
+        },
+        {
+            "id": 2,
+            "title": "Silly Feet",
+            "author": "David Renda",
+            "filename": "Silly_Feet_David_Renda.mp3",
+            "categories": ["Relax", "Fun"],
+            "ranking": 2
+        },
+        {
+            "id": 3,
+            "title": "Western adventures",
+            "author": "David Fesliyan",
+            "filename": "Western_Adventures_-_David_Fesliyan.mp3",
+            "categories": ["Fun", "Western"],
+            "ranking": 4
+        },
+        {
+            "id": 4,
+            "title": "Bass trap",
+            "author": "Steve Oxen",
+            "filename": "BASS_TRAP_Steve_Oxen.mp3",
+            "categories": ["Powerful", "Insomnia"],
+            "ranking": 3
+        }
+    ]
+}
