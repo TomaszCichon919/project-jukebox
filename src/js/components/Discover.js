@@ -1,11 +1,18 @@
 import utils from '../utils.js';
-import { templates, select, } from '../settings.js';
+import { templates, select, classNames} from '../settings.js';
 class Discover {
   constructor(randomSong) {
     const thisDiscover = this;
     thisDiscover.randomSong = randomSong;
+    thisDiscover.getElements(randomSong);
     thisDiscover.randomPlayer();
-    //thisDiscover.initWidget();
+   
+  }
+
+  getElements(element) {
+    const thisDiscover = this;
+    thisDiscover.dom = {};
+    thisDiscover.dom.wrapper = element;
   }
 
   randomPlayer() {
@@ -18,15 +25,21 @@ class Discover {
     const playerContainer = document.querySelector(select.containerOf.discover);
 
     playerContainer.appendChild(thisDiscover.element);
+
+
+    thisDiscover.dom.GreenAudioPlayer = playerContainer.querySelector(select.search.audio);
+    thisDiscover.dom.GreenAudioPlayer.classList.remove(classNames.search.standardPlayer);
+    thisDiscover.dom.GreenAudioPlayer.classList.add(classNames.search.discoveryPlayer);
+    thisDiscover.initWidget();
   }
 
-  // initWidget() {
-  //   // eslint-disable-next-line no-undef
-  //   GreenAudioPlayer.init({
-  //     selector: '.player',
-  //     stopOthersOnPlay: true
-  //   });
-  // }
+  initWidget() {
+    // eslint-disable-next-line no-undef
+    GreenAudioPlayer.init({
+      selector: '.player3',
+      stopOthersOnPlay: true
+    });
+  }
 
 }
 

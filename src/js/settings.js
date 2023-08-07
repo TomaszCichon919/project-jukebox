@@ -33,6 +33,7 @@ export const classNames = {
   search: {
     standardPlayer: 'player',
     searchPlayer: 'player2',
+    discoveryPlayer: 'player3',
   },
   categories: {
     notcurrent: 'notcurrent',
