@@ -27,7 +27,6 @@ const app = {
     const thisApp = this;
 
     thisApp.capslock = document.querySelectorAll('.header, .main-nav, .subscribe-text, .new-album, .join, .page-name, .search-btn');
-    console.log('capslock', thisApp.capslock);
 
     thisApp.capslock.forEach((div) => {
       thisApp.convertTextToUppercase(div);
@@ -102,8 +101,6 @@ const app = {
       shuffleBin.push(thisApp.data.songs[songData].id);
 
     }
-
-    console.log('shufflebin', shuffleBin);
     const randomIndex = (Math.floor(Math.random() * (shuffleBin.length) + 1));
 
     for (const songData in thisApp.data.songs) {
@@ -123,7 +120,6 @@ const app = {
         }
       }
     }
-    console.log('ello', categoriesContainer);
     const generatedHTML = templates.categories(categoriesContainer);
 
     thisApp.element = utils.createDOMFromHTML(generatedHTML);
@@ -145,17 +141,15 @@ const app = {
 
     // generated categorie select in Search //
 
-    thisApp.categoriesNames = document.querySelectorAll('.categories-list a');
+    thisApp.categoriesNames = document.querySelectorAll(select.containerOf.categoriesNames);
 
     thisApp.players = document.querySelector(select.containerOf.home).children;
-    console.log('heyyyyy', thisApp.players);
 
     for (let categorie of thisApp.categoriesNames) {
 
       categorie.addEventListener('click', function (event) {
         const clickedElement = this;
         event.preventDefault();
-        console.log('event ttt', event.target);
         if (event.target.classList.contains(classNames.categories.selected)) {
           event.target.classList.remove(classNames.categories.selected);
           for (let player of thisApp.players) {
@@ -168,12 +162,8 @@ const app = {
             }
           }
           categorie.classList.add(classNames.categories.selected);
-
-          /* get pagfe id from href */
           const id = clickedElement.getAttribute('id');
-          /* run thisApp.activatePAge with that id */
           thisApp.activateCategory(id);
-          console.log('selected sth');
         }
       });
     }
@@ -181,8 +171,6 @@ const app = {
 
   activateCategory: function (id) {
     const thisApp = this;
-    console.log('hello', id);
-    /* add class active to maching pages, remove from non-matching */
     for (let player of thisApp.players) {
       player.classList.remove(classNames.categories.notcurrent);
       if (!player.classList.contains(id)) {
@@ -190,8 +178,6 @@ const app = {
       }
     }
   },
-
-
 
   initWidget() {
     const thisApp = this;
@@ -225,7 +211,6 @@ const app = {
 
   initSearch: function () {
     const thisApp = this;
-    console.log('are you there?', categoriesContainer);
     const searchElem = document.querySelector(select.containerOf.search);
     thisApp.search = new Search(searchElem);
   },
@@ -234,17 +219,14 @@ const app = {
     const thisApp = this;
     const catArray = [];
     const playerContainer = document.querySelectorAll('[text="play-file"]');
-    //console.log('makarena', playerContainer);
     for (let player of playerContainer) {
       player.addEventListener('play', function (event) {
         const categorieAttribute = event.target.classList.toString();
         const singleCategory = categorieAttribute.split(' ');
         const newArray = singleCategory.filter(item => item !== '');
-        console.log('elllllllelllel', newArray);
         for (let i = 0; i < newArray.length; i++) {
           catArray.push(newArray[i]);
         }
-        console.log('array', catArray);
         thisApp.countElements(catArray);
 
       });
@@ -253,7 +235,7 @@ const app = {
 
   countElements(arr) {
     const thisApp = this;
-    const elementCount = {}; // Initialize an empty object to store element counts
+    const elementCount = {};
 
     arr.forEach((element) => {
       if (element in elementCount) {
@@ -262,52 +244,46 @@ const app = {
         elementCount[element] = 1;
       }
     });
-
-    console.log('object', elementCount);
-    thisApp.getKeyWithBiggestValue(elementCount);
+    thisApp.mostChosenCategory(elementCount);
   },
 
 
-  getKeyWithBiggestValue(obj) {
+  mostChosenCategory(obj) {
     const thisApp = this;
-    thisApp.maxKey = null;
-    let maxValue = -Infinity;
+    thisApp.mostFrequentCategory = null;
+    let categoryCount = -1;
     let draw = 'draw';
 
-    for (const key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        const value = obj[key];
-        if (value > maxValue) {
-          maxValue = value;
-          thisApp.maxKey = key;
-        } else if (value === maxValue) {
-          thisApp.maxKey = draw; // Set draw flag if the current value is the same as the current maximum value
+    for (const cat in obj) {
+      if (obj.hasOwnProperty(cat)) {
+        const value = obj[cat];
+        if (value > categoryCount) {
+          categoryCount = value;
+          thisApp.mostFrequentCategory = cat;
+        } else if (value === categoryCount) {
+          thisApp.mostFrequentCategory = draw;
         }
       }
     }
-
-    console.log('played the most', thisApp.maxKey);
     thisApp.initShufflerWithCategory();
   },
 
   initShufflerWithCategory() {
     const thisApp = this;
     shuffleBin = [];
-    if (thisApp.maxKey == 'draw') {
+    if (thisApp.mostFrequentCategory == 'draw') {
       for (const songData in thisApp.data.songs) {
         shuffleBin.push(thisApp.data.songs[songData].id);
       }
-      console.log('shufflebin draw', shuffleBin);
     } else {
       for (const songData in thisApp.data.songs) {
         for (let i = 0; i < thisApp.data.songs[songData].categories.length; i++) {
-          if (thisApp.data.songs[songData].categories[i] == thisApp.maxKey) {
+          if (thisApp.data.songs[songData].categories[i] == thisApp.mostFrequentCategory) {
             shuffleBin.push(thisApp.data.songs[songData].id);
           }
         }
       }
     }
-    console.log('shufflebin with categorie', shuffleBin);
     const randomIndex = (Math.floor(Math.random() * (shuffleBin.length)));
 
     thisApp.discoverWrapper.innerHTML = '';

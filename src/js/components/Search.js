@@ -57,7 +57,6 @@ class Search {
             thisSearch.box.push(thisSearch.data.songs[songData].author);
           }
         }
-        console.log('boxstring', thisSearch.box);
         thisSearch.searchFilter(thisSearch.box, thisSearch.dom.input.value);
       } else {
 
@@ -71,7 +70,6 @@ class Search {
     const thisSearch = this;
     const searchTerm = searchString.toLowerCase();
     thisSearch.result = array.filter(item => item.toLowerCase().includes(searchTerm));
-    console.log('after filter', thisSearch.result);
     thisSearch.generatePlayer();
   }
 
@@ -111,8 +109,6 @@ class Search {
             if (!thisSearch.resultCounter.includes(thisSearch.data.songs[songData])) {
               if (thisSearch.data.songs[songData].title == thisSearch.result[i] || thisSearch.data.songs[songData].author == thisSearch.result[i]) {
                 thisSearch.resultCounter.push(thisSearch.data.songs[songData]);
-                console.log('result counter change', thisSearch.resultCounter);
-
 
                 const generatedHTML = templates.player(thisSearch.data.songs[songData]);
 
@@ -170,7 +166,6 @@ class Search {
     thisSearch.selectedValue = 'All';
     thisSearch.dom.categories.addEventListener('change', function (event) {
       thisSearch.selectedValue = event.target.value;
-      console.log('checked value', thisSearch.selectedValue);
       thisSearch.box = [];
       if (thisSearch.selectedValue == 'All') {
         for (let songData in thisSearch.data.songs) {
@@ -181,7 +176,6 @@ class Search {
             thisSearch.box.push(thisSearch.data.songs[songData].author);
           }
         }
-        console.log('boxall', thisSearch.box);
       } else {
         for (let songData in thisSearch.data.songs) {
           for (let i = 0; i < thisSearch.data.songs[songData].categories.length; i++) {
@@ -191,7 +185,6 @@ class Search {
             }
           }
         }
-        console.log('box', thisSearch.box);
       }
 
 

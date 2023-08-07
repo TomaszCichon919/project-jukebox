@@ -19,6 +19,7 @@ export const select = {
     discover: '.discover-wrapper',
     result: '.result',
     categories: '.categories',
+    categoriesNames: '.categories-list a',
     categoriesSearch: '.categorie-search'
   },
   search: {
