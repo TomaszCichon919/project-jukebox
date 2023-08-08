@@ -9,6 +9,7 @@ class Search {
     thisSearch.getData();
     thisSearch.getElements(element);
     thisSearch.initActions();
+  
   }
 
   getData() {
@@ -48,7 +49,7 @@ class Search {
     const thisSearch = this;
     thisSearch.dom.pageTop.addEventListener('submit', function (event) {
       event.preventDefault();
-      if (thisSearch.dom.input.value == '' && thisSearch.box.length == 0) {
+      if (thisSearch.box.length == 0) {
         for (let songData in thisSearch.data.songs) {
           if (!thisSearch.box.includes(thisSearch.data.songs[songData].title)) {
             thisSearch.box.push(thisSearch.data.songs[songData].title);

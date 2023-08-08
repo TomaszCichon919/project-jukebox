@@ -42,7 +42,6 @@ const app = {
 
     const idFromHash = window.location.hash.replace('#/', '');
 
-
     let pageMatchingHash = thisApp.pages[0].id;
 
     for (let page of thisApp.pages) {
@@ -111,7 +110,7 @@ const app = {
 
   },
 
-  categories() {
+  prepareAllcategories() {
     const thisApp = this;
     for (const songData in thisApp.data.songs) {
       for (let i = 0; i < thisApp.data.songs[songData].categories.length; i++) {
@@ -205,14 +204,14 @@ const app = {
 
         thisApp.initPlayer();
         thisApp.initShuffler();
-        thisApp.categories();
+        thisApp.prepareAllcategories();
       });
   },
 
   initSearch: function () {
     const thisApp = this;
     const searchElem = document.querySelector(select.containerOf.search);
-    thisApp.search = new Search(searchElem);
+    thisApp.search = new Search(searchElem, categoriesContainer);
   },
 
   preferenceChecker() {

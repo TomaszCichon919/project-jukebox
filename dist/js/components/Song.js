@@ -7,7 +7,7 @@ class Song {
     thisSong.id = id;
     thisSong.data = data;
     thisSong.renderPlayer();
-    console.log('thisSongdata', thisSong.data);
+   
   }
 
   renderPlayer() {
